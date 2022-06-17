@@ -1,4 +1,6 @@
-FROM php:cli
+ARG DOCKER_HUB_IMAGE_TAG=cli
+
+FROM php:${DOCKER_HUB_IMAGE_TAG}
 
 ARG USER_ID=1000
 ARG GROUP_ID=1000
@@ -8,7 +10,7 @@ ARG PASSWORD=secret
 RUN apt-get update && \
     apt-get install -y sudo
 
-# TODO: Install PHP extensions
+# TODO: Install some PHP extensions here
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
